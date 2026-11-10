@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root,
+  [data-theme="classic-red"] {
+    --font-display: 'Outfit', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Classic Red Spider-Man CSS Variable Palette */
+    --theme-bg: #050507;
+    --theme-surface: #0B0B10;
+    --theme-surface-elevated: #121016;
+    --theme-accent: #E11D48;
+    --theme-accent-soft: #FB7185;
+    --theme-accent-muted: #FDA4AF;
+    --theme-border-glow: rgba(244, 63, 94, 0.48);
+    --theme-button-bg: #E11D48;
+    --theme-button-hover: #F43F5E;
+    --theme-button-text: #FFFFFF;
+    --theme-spider-stroke: #E11D48;
+    --theme-spider-joint: #FDA4AF;
+    --theme-spider-crest-bg: #9F1239;
+    --theme-web-main: #F4F4F5;
+    --theme-web-ring: #E11D48;
+  }
+
+  /* Venom Black-and-White Symbiote CSS Variable Palette */
+  [data-theme="venom"] {
+    --theme-bg: #020204;
+    --theme-surface: #09090D;
+    --theme-surface-elevated: #121217;
+    --theme-accent: #F4F4F5;
+    --theme-accent-soft: #D4D4D8;
+    --theme-accent-muted: #A1A1AA;
+    --theme-border-glow: rgba(244, 244, 245, 0.45);
+    --theme-button-bg: #F4F4F5;
+    --theme-button-hover: #FFFFFF;
+    --theme-button-text: #050507;
+    --theme-spider-stroke: #F4F4F5;
+    --theme-spider-joint: #FFFFFF;
+    --theme-spider-crest-bg: #18181B;
+    --theme-web-main: #FFFFFF;
+    --theme-web-ring: #A1A1AA;
+
+    /* Remap Tailwind rose accent scale to Symbiote monochrome silver/white */
+    --color-rose-50: #FAFAFA;
+    --color-rose-100: #F4F4F5;
+    --color-rose-200: #E4E4E7;
+    --color-rose-300: #FAFAFA;
+    --color-rose-400: #E4E4E7;
+    --color-rose-500: #F4F4F5;
+    --color-rose-600: #F4F4F5;
+    --color-rose-700: #D4D4D8;
+    --color-rose-800: #52525B;
+    --color-rose-900: #27272A;
+    --color-rose-950: #18181B;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--theme-bg);
+    color: #f4f4f5;
+    transition: background-color 250ms ease, color 250ms ease;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Ensure primary CTA buttons in Venom mode have high-contrast pitch-black text on stark white symbiote background */
+[data-theme="venom"] .bg-rose-600 {
+  background-color: var(--theme-button-bg) !important;
+  color: var(--theme-button-text) !important;
+}
+
+[data-theme="venom"] .bg-rose-600:hover {
+  background-color: var(--theme-button-hover) !important;
+  color: var(--theme-button-text) !important;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
